@@ -8,5 +8,9 @@ path = path.replace("/", "");
 path = path.replace("/", "");
 var date = new Date();
 var saveTime = "" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds();
-var commnad = "livestreamer hlsvariant://" + match + " '720p,best' -o -f " + saveDir + "/" + path + "_" + saveTime + ".ts";
+
+var endalert = "osascript ~/Documents/.ero/openbrowser.script '" + path + "'";
+
+var commnad = "livestreamer hlsvariant://" + match + " '720p,best' -o " + saveDir + "/" + path + "_" + saveTime + ".ts -f\n" + endalert;
 alert(commnad);
+
