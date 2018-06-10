@@ -11,7 +11,8 @@ var saveTime = "" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() 
 
 var termtitle = 'echo -ne "\\033]0;"' + path + '"\\007";';
 var endalert = "osascript ~/Documents/.tools/end.scpt '" + path + "';";
+var exit = "exit;";
 
-var commnad = termtitle + "\nlivestreamer hlsvariant://" + match + " '720p,best' -o " + saveDir + "/" + path + "_" + saveTime + ".ts -f;\n" + endalert;
+var commnad = termtitle + "\nlivestreamer hlsvariant://" + match + " '720p,best' -o " + saveDir + "/" + path + "_" + saveTime + ".ts -f;\n" + endalert + "\n" + exit;
 alert(commnad);
 
