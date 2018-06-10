@@ -1,7 +1,6 @@
 on run argv
 	set username to item 1 of argv
-	
-	display dialog "End Stream of " & username
+	display dialog "End Stream of " & username & return & "Open Browser?"
 	set tmp to result
 	set btn to button returned of tmp
 	if btn = "OK" then
