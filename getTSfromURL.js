@@ -1,6 +1,6 @@
 javascript:
 var saveDir = "~/Documents/.ero";
-var regix = "http.*m3u8";
+var regix = "https://edge.*m3u8";
 var html = document.body.innerHTML;
 var match = html.match(regix)[0];
 match = match.replace(/[\\]/g,'');
