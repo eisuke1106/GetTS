@@ -15,5 +15,5 @@ var termtitle = 'echo -ne "\\033]0;"' + path + '"\\007";';
 var endalert = "osascript ~/Documents/.tools/end.scpt '" + path + "';";
 var exit = "exit;";
 
-var commnad = termtitle + "\nlivestreamer hlsvariant://" + match + " '720p,best' -o " + saveDir + "/" + path + "_" + saveTime + ".ts -f;\n" + endalert + "\n" + exit;
+var commnad = termtitle + "\nstreamlink hls://" + match + " '720p,best' -o " + saveDir + "/" + path + "_" + saveTime + ".ts -f;\n" + endalert + "\n" + exit;
 alert(commnad);
