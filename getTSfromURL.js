@@ -1,19 +1,22 @@
 javascript:
+var resolution = '720p,best';
 var saveDir = "~/Documents/.ero";
-var regix = "https://edge.*m3u8";
-var html = document.body.innerHTML;
-var match = html.match(regix)[0];
-match = match.replace(/[\\]/g,'');
-match = match.replace(/u002D/g,'-');
+var videoTags = document.getElementsByTagName("video");
+if (videoTags.length == 0){
+    alert("can not find video tags");
+}
+var videoSrc = videoTags[0].src;
 var path = location.pathname;
 path = path.replace("/", "");
 path = path.replace("/", "");
 var date = new Date();
 var saveTime = "" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds();
+var savePath = saveDir + '/' + path + '_' + saveTime + '.ts';
+var newLine = '\n';
 
-var termtitle = 'echo -ne "\\033]0;"' + path + '"\\007";';
-var endalert = "osascript ~/Documents/.tools/end.scpt '" + path + "';";
-var exit = "exit;";
-
-var commnad = termtitle + "\nstreamlink hls://" + match + " '720p,best' -o " + saveDir + "/" + path + "_" + saveTime + ".ts -f;\n" + endalert + "\n" + exit;
-alert(commnad);
+var command = ""; 
+command += 'echo -ne "\\033]0;' + path + '\\007";' + newLine;
+command += "streamlink 'hls://" + videoSrc + "' " + resolution + " -o " + savePath + " -f;" + newLine;
+command += 'osascript ~/Documents/.tools/end.scpt ' + path + ';' + newLine;
+command += 'exit;';
+alert(command);
