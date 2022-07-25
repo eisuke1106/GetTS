@@ -2,11 +2,11 @@ var resolution = '720p,best';
 var saveDir = "~/Documents/.ero";
 var newLine = '\n';
 
-var videoTags = document.getElementsByTagName("video");
-if (videoTags.length == 0){
-    alert("can not find video tags");
+var roomInfo = window.initialRoomDossier;
+if (roomInfo == undefined){
+    alert("can not find videoInfo");
 }else{
-    var videoSrc = videoTags[0].src;
+    var hlsSource = JSON.parse(roomInfo).hls_source;
 
     var title = location.pathname.replaceAll('/','');
     var date = new Date();
@@ -15,7 +15,7 @@ if (videoTags.length == 0){
     
     var command = ""; 
     command += 'echo -ne "\\033]0;' + title + '\\007";' + newLine;
-    command += "streamlink 'hls://" + videoSrc + "' " + resolution + " -o " + savePath + " -f;" + newLine;
+    command += "streamlink 'hls://" + hlsSource + "' " + resolution + " -o " + savePath + " -f;" + newLine;
     command += 'osascript ~/Documents/.tools/end.scpt ' + title + ';' + newLine;
     command += 'exit;';
     alert(command);    
